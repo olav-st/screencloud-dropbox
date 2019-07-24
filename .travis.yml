@@ -1,0 +1,17 @@
+language: generic
+os:
+- linux
+script:
+- make
+after_success:
+- mv current.zip $TRAVIS_TAG.zip
+deploy:
+  provider: releases
+  api_key:
+    secure: i5XMcOJ3kP+0N8dASYkbVK8GSBpEK38wZTXl+hIFycQZBauJO23PzBv3z0dv9y+/GWZeg/jeN09kUIhD2Ak0hO0o7swI+2RuZT6ks/fHJvkLy4eDab9XGQDLsDBLnSuWaCFLve7AL3dXmoi2znk4Pv/vOxEQengV+s0BSuxWHsPV8GL3pLSulmGmIz4+PfH7KtvGNR2PM8THsG114CaGMkC3y3qxybHnc2aj6CSfd5saLVJP9Pvbpd2Y7PGOUk0yZVBX6BpP6FDm+PAjgBvznB/+e7Fj/etoV9YNEUetsuY8YebfsE0Er2k5lXTl6TFA1pDCB/cc545IFn2hqANOBaog4lzvkfCF7L7rN5WN3JNw/ZxVkpZTUOZp4k8LUdpNSmJ1Pxmfkv8u0NVh/IKzgc0li0WcBdOiWyPvaH5EcZWl8uZ0gls33xj/EnwV2DIJXb8o45fRm3NQrok2Ct5l9pJB3055wkzar76GfkFA9hFVWtmzP7zhEE7LMsufXYQaGIT1fjXYcwI+I4UOxzjs04QoL3NTJHpth9yg8F+coxKu1Pd1In6mxIn7CxdOErMtRHYqX2ux+gUJEbqUhVvK597vcaAXBWW4Yw/Xu0FIGb0PEyV3QlHh4i+6dwZHXDz5Iu0qZ0++RoLbKmDrk03o5Hn+3AmUOWY18KyHH+bcfiE=
+  file_glob: true
+  file: ./*.zip
+  skip_cleanup: true
+  on:
+    repo: olav-st/screencloud-dropbox
+    tags: true
